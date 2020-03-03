@@ -1,4 +1,4 @@
-# projeto_perguntas
+# expenses
 
 A new Flutter project.
 
