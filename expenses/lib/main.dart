@@ -13,7 +13,7 @@ class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.cyan[900],
+      statusBarColor: Colors.pink[900],
       systemNavigationBarColor: Color(0xFF303030),
     ));
     return MaterialApp(
@@ -57,24 +57,30 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [
-    // Transaction(
-    //   id: 't0',
-    //   title: 'Conta antiga',
-    //   value: 400.00,
-    //   date: DateTime.now().subtract(Duration(days: 33)),
-    // ),
-    // Transaction(
-    //   id: 't1',
-    //   title: 'Novo Tênis de Corrida',
-    //   value: 310.76,
-    //   date: DateTime.now().subtract(Duration(days: 3)),
-    // ),
-    // Transaction(
-    //   id: 't2',
-    //   title: 'Conta de Luz',
-    //   value: 211.30,
-    //   date: DateTime.now().subtract(Duration(days: 4)),
-    // ),
+    Transaction(
+      id: 't0',
+      title: 'Conta antiga',
+      value: 400.00,
+      date: DateTime.now().subtract(Duration(days: 33)),
+    ),
+    Transaction(
+      id: 't1',
+      title: 'Conta de Água',
+      value: 310.76,
+      date: DateTime.now().subtract(Duration(days: 3)),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Conta de Luz',
+      value: 211.30,
+      date: DateTime.now().subtract(Duration(days: 4)),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Internet',
+      value: 150.00,
+      date: DateTime.now(),
+    ),
   ];
 
   List<Transaction> get _recentTransactions {
@@ -119,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan[900],
+        backgroundColor: Colors.pink[900],
         title: Text('Despesas Pessoais'),
         centerTitle: true,
       ),
@@ -135,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add, color: Colors.white, size: 35),
         onPressed: () => _openTransactionFormModal(context),
-        backgroundColor: Colors.cyan[800],
+        backgroundColor: Colors.pink[800],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

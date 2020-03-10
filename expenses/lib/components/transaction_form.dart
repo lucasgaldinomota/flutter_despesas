@@ -74,7 +74,7 @@ class _TransactionFormState extends State<TransactionForm> {
                     ),
                   ),
                   FlatButton(
-                    textColor: Colors.cyan[800],
+                    textColor: Colors.pink[800],
                     child: Text(
                       'Selecionar Data',
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -89,7 +89,7 @@ class _TransactionFormState extends State<TransactionForm> {
               children: [
                 FlatButton(
                   child: Text('Adicionar a transação'),
-                  color: Colors.cyan[900],
+                  color: Colors.pink[900],
                   onPressed: _submitForm,
                 ),
               ],

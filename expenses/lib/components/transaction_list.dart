@@ -42,7 +42,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   child: ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: Colors.cyan[900],
+                      backgroundColor: Colors.pink[900],
                       radius: 30,
                       child: Padding(
                         padding: EdgeInsets.all(6),
@@ -63,7 +63,7 @@ class TransactionList extends StatelessWidget {
                     ),
                     trailing: IconButton(
                       icon: Icon(Icons.delete),
-                      color: Colors.red[400],
+                      color: Colors.red[700],
                       onPressed: () => onRemove(tr.id),
                     ),
                   ),
