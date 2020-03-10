@@ -71,13 +71,20 @@ class _TransactionFormState extends State<TransactionForm> {
                       _selectedDate == null
                           ? 'Nenhuma data selecionada!'
                           : 'Data Selecionada: ${DateFormat('dd / MMMM / y', 'pt_BR').format(_selectedDate)}',
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                      ),
                     ),
                   ),
                   FlatButton(
-                    textColor: Colors.pink[800],
+                    color: Theme.of(context).primaryColor,
                     child: Text(
                       'Selecionar Data',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        fontFamily: 'Quicksand',
+                      ),
                     ),
                     onPressed: _showDatePicker,
                   ),
@@ -88,8 +95,15 @@ class _TransactionFormState extends State<TransactionForm> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FlatButton(
-                  child: Text('Adicionar a transação'),
-                  color: Colors.pink[900],
+                  child: Text(
+                    'Adicionar a transação',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      fontFamily: 'Quicksand',
+                    ),
+                  ),
+                  color: Theme.of(context).primaryColor,
                   onPressed: _submitForm,
                 ),
               ],

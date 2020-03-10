@@ -29,6 +29,7 @@ class ExpensesApp extends StatelessWidget {
         theme: ThemeData(
           brightness: Brightness.dark,
           accentColor: Colors.white,
+          primaryColor: Colors.pink[900],
           fontFamily: 'Quicksand',
           textTheme: ThemeData.dark().textTheme.copyWith(
                 title: TextStyle(
@@ -125,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink[900],
+        backgroundColor: Theme.of(context).primaryColor,
         title: Text('Despesas Pessoais'),
         centerTitle: true,
       ),
@@ -141,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add, color: Colors.white, size: 35),
         onPressed: () => _openTransactionFormModal(context),
-        backgroundColor: Colors.pink[800],
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
