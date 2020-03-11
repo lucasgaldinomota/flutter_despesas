@@ -20,7 +20,10 @@ class ChartBar extends StatelessWidget {
           child: FittedBox(
             child: Text(
               '${value.toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 3),
+              style: TextStyle(
+                fontSize: 3,
+                fontFamily: 'Quicksand',
+              ),
             ),
           ),
         ),
@@ -45,7 +48,7 @@ class ChartBar extends StatelessWidget {
                 heightFactor: percentage,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                    color: Colors.pink[600],
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
@@ -54,7 +57,10 @@ class ChartBar extends StatelessWidget {
           ),
         ),
         SizedBox(height: 5),
-        Text(label.toUpperCase()),
+        Text(
+          label.toUpperCase(),
+          style: TextStyle(fontFamily: 'Quicksand'),
+        ),
       ],
     );
   }

@@ -13,7 +13,7 @@ class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.pink[900],
+      statusBarColor: Colors.black,
       systemNavigationBarColor: Color(0xFF303030),
     ));
     return MaterialApp(
@@ -29,7 +29,6 @@ class ExpensesApp extends StatelessWidget {
         theme: ThemeData(
           brightness: Brightness.dark,
           accentColor: Colors.white,
-          primaryColor: Colors.pink[900],
           fontFamily: 'Quicksand',
           textTheme: ThemeData.dark().textTheme.copyWith(
                 title: TextStyle(
@@ -40,9 +39,8 @@ class ExpensesApp extends StatelessWidget {
           appBarTheme: AppBarTheme(
             textTheme: ThemeData.dark().textTheme.copyWith(
                   title: TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
+                    fontFamily: 'Quicksand',
+                    fontSize: 27,
                   ),
                 ),
           ),
@@ -107,12 +105,6 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pop();
   }
 
-  _removeTransaction(String id) {
-    setState(() {
-      _transactions.removeWhere((tr) => tr.id == id);
-    });
-  }
-
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -126,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.black,
         title: Text('Despesas Pessoais'),
         centerTitle: true,
       ),
@@ -135,14 +127,14 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Chart(_recentTransactions),
-            TransactionList(_transactions, _removeTransaction),
+            TransactionList(_transactions),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add, color: Colors.white, size: 35),
         onPressed: () => _openTransactionFormModal(context),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.pink[600],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

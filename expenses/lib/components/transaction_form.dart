@@ -55,12 +55,14 @@ class _TransactionFormState extends State<TransactionForm> {
               controller: _titleController,
               onSubmitted: (_) => _submitForm(),
               decoration: InputDecoration(labelText: 'Título'),
+              style: TextStyle(fontFamily: 'Quicksand'),
             ),
             TextField(
               controller: _valueController,
               keyboardType: TextInputType.numberWithOptions(decimal: true),
               onSubmitted: (_) => _submitForm(),
               decoration: InputDecoration(labelText: 'Valor (R\$)'),
+              style: TextStyle(fontFamily: 'Quicksand'),
             ),
             Container(
               height: 70,
@@ -77,13 +79,16 @@ class _TransactionFormState extends State<TransactionForm> {
                     ),
                   ),
                   FlatButton(
-                    color: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    color: Colors.pink[600],
                     child: Text(
                       'Selecionar Data',
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
                         fontSize: 12,
                         fontFamily: 'Quicksand',
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     onPressed: _showDatePicker,
@@ -95,15 +100,18 @@ class _TransactionFormState extends State<TransactionForm> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FlatButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
                   child: Text(
                     'Adicionar a transação',
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
                       fontSize: 15,
                       fontFamily: 'Quicksand',
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  color: Theme.of(context).primaryColor,
+                  color: Colors.pink[600],
                   onPressed: _submitForm,
                 ),
               ],

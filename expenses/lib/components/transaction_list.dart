@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 
-class TransactionList extends StatelessWidget {
+class TransactionList extends StatefulWidget {
   final List<Transaction> transactions;
-  final void Function(String) onRemove;
 
-  TransactionList(this.transactions, this.onRemove);
+  TransactionList(this.transactions);
 
+  @override
+  _TransactionListState createState() => _TransactionListState();
+}
+
+class _TransactionListState extends State<TransactionList> {
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 600,
-      child: transactions.isEmpty
+      child: widget.transactions.isEmpty
           ? Column(
               children: [
                 SizedBox(height: 20),
@@ -31,40 +35,77 @@ class TransactionList extends StatelessWidget {
               ],
             )
           : ListView.builder(
-              itemCount: transactions.length,
+              itemCount: widget.transactions.length,
               itemBuilder: (ctx, index) {
-                final tr = transactions[index];
-                return Card(
-                  elevation: 5,
-                  margin: EdgeInsets.symmetric(
-                    vertical: 3,
-                    horizontal: 5,
-                  ),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Theme.of(context).primaryColor,
-                      radius: 30,
+                final tr = widget.transactions[index];
+                return Dismissible(
+                  direction: DismissDirection.endToStart,
+                  background: Padding(
+                    padding: EdgeInsets.all(3),
+                    child: Container(
+                      alignment: AlignmentDirectional.centerEnd,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(5),
+                        ),
+                        color: Colors.red[900],
+                      ),
                       child: Padding(
-                        padding: EdgeInsets.all(6),
-                        child: FittedBox(
-                          child: Text(
-                            'R\$ ${tr.value.toStringAsFixed(2)}',
-                            style: TextStyle(color: Colors.white),
-                          ),
+                        padding: EdgeInsets.only(right: 10),
+                        child: Icon(
+                          Icons.delete_outline,
+                          size: 30,
                         ),
                       ),
                     ),
-                    title: Text(
-                      tr.title,
-                      style: Theme.of(context).textTheme.title,
+                  ),
+                  key: Key(tr.id),
+                  onDismissed: (direction) {
+                    setState(() => {
+                          widget.transactions.removeAt(index),
+                        });
+                  },
+                  child: Card(
+                    elevation: 5,
+                    margin: EdgeInsets.symmetric(
+                      vertical: 3,
+                      horizontal: 5,
                     ),
-                    subtitle: Text(
-                      DateFormat('d MMMM y', 'pt_BR').format(tr.date),
-                    ),
-                    trailing: IconButton(
-                      icon: Icon(Icons.delete),
-                      color: Colors.red[900],
-                      onPressed: () => onRemove(tr.id),
+                    child: ListTile(
+                      title: Text(
+                        tr.title,
+                        style: TextStyle(
+                            fontFamily: 'Quicksand',
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ),
+                      subtitle: Text(
+                        DateFormat('d MMMM y', 'pt_BR').format(tr.date),
+                        style: TextStyle(fontSize: 13, color: Colors.grey[300]),
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            '- R\$ ${tr.value.toStringAsFixed(2)}',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontFamily: 'Quicksand',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              size: 22,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
