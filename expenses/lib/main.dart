@@ -80,6 +80,48 @@ class _MyHomePageState extends State<MyHomePage> {
       value: 150.00,
       date: DateTime.now(),
     ),
+    Transaction(
+      id: 't4',
+      title: 'Lanche',
+      value: 15.00,
+      date: DateTime.now().subtract(Duration(days: 2)),
+    ),
+    Transaction(
+      id: 't5',
+      title: 'Almoço',
+      value: 24.90,
+      date: DateTime.now().subtract(Duration(days: 3)),
+    ),
+    Transaction(
+      id: 't6',
+      title: 'Jantar',
+      value: 70.00,
+      date: DateTime.now().subtract(Duration(days: 3)),
+    ),
+    Transaction(
+      id: 't7',
+      title: 'Nintendo Switch',
+      value: 2000.00,
+      date: DateTime.now().subtract(Duration(days: 6)),
+    ),
+    Transaction(
+      id: 't8',
+      title: 'PS4 Pro',
+      value: 1800.00,
+      date: DateTime.now().subtract(Duration(days: 5)),
+    ),
+    Transaction(
+      id: 't9',
+      title: 'Faculdade',
+      value: 1000.00,
+      date: DateTime.now().subtract(Duration(days: 1)),
+    ),
+    Transaction(
+      id: 't10',
+      title: 'ESSA É A ÚLTIMA',
+      value: 150.00,
+      date: DateTime.now(),
+    ),
   ];
 
   List<Transaction> get _recentTransactions {
@@ -105,6 +147,12 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pop();
   }
 
+  _removeTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((tr) => tr.id == id);
+    });
+  }
+
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -127,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Chart(_recentTransactions),
-            TransactionList(_transactions),
+            TransactionList(_transactions, _removeTransaction),
           ],
         ),
       ),

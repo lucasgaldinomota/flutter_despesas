@@ -3,9 +3,10 @@ import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 
 class TransactionList extends StatefulWidget {
-  final List<Transaction> transactions;
+  final List<Transaction> _transactions;
+  final void Function(String) onRemove;
 
-  TransactionList(this.transactions);
+  TransactionList(this._transactions, this.onRemove);
 
   @override
   _TransactionListState createState() => _TransactionListState();
@@ -15,8 +16,8 @@ class _TransactionListState extends State<TransactionList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 600,
-      child: widget.transactions.isEmpty
+      height: MediaQuery.of(context).size.height - 220,
+      child: widget._transactions.isEmpty
           ? Column(
               children: [
                 SizedBox(height: 20),
@@ -35,9 +36,10 @@ class _TransactionListState extends State<TransactionList> {
               ],
             )
           : ListView.builder(
-              itemCount: widget.transactions.length,
+              padding: EdgeInsets.only(bottom: 75),
+              itemCount: widget._transactions.length,
               itemBuilder: (ctx, index) {
-                final tr = widget.transactions[index];
+                final tr = widget._transactions[index];
                 return Dismissible(
                   direction: DismissDirection.endToStart,
                   background: Padding(
@@ -61,9 +63,7 @@ class _TransactionListState extends State<TransactionList> {
                   ),
                   key: Key(tr.id),
                   onDismissed: (direction) {
-                    setState(() => {
-                          widget.transactions.removeAt(index),
-                        });
+                    widget.onRemove(tr.id);
                   },
                   child: Card(
                     elevation: 5,
