@@ -57,61 +57,57 @@ class _TransactionFormState extends State<TransactionForm> {
               decoration: InputDecoration(labelText: 'Título'),
               style: TextStyle(fontFamily: 'Quicksand'),
             ),
-            TextField(
-              controller: _valueController,
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (_) => _submitForm(),
-              decoration: InputDecoration(labelText: 'Valor (R\$)'),
-              style: TextStyle(fontFamily: 'Quicksand'),
-            ),
-            Container(
-              height: 70,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      _selectedDate == null
-                          ? 'Nenhuma data selecionada!'
-                          : 'Data Selecionada: ${DateFormat('dd / MMMM / y', 'pt_BR').format(_selectedDate)}',
-                      style: TextStyle(
-                        fontFamily: 'Quicksand',
-                      ),
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 330,
+                  child: TextField(
+                    controller: _valueController,
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    onSubmitted: (_) => _submitForm(),
+                    decoration: InputDecoration(labelText: 'Valor (R\$)'),
+                    style: TextStyle(fontFamily: 'Quicksand'),
                   ),
-                  FlatButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    color: Colors.pink[600],
-                    child: Text(
-                      'Selecionar Data',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontFamily: 'Quicksand',
-                        fontWeight: FontWeight.bold,
-                      ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.pink[600],
+                    mini: true,
+                    child: Icon(
+                      Icons.date_range,
+                      size: 25,
+                      color: Colors.white,
                     ),
                     onPressed: _showDatePicker,
                   ),
-                ],
+                ),
+              ],
+            ),
+            Container(
+              height: 70,
+              alignment: Alignment.center,
+              child: Text(
+                _selectedDate == null
+                    ? 'Nenhuma data selecionada!'
+                    : 'Data Selecionada: ${DateFormat('dd / MMMM / y', 'pt_BR').format(_selectedDate)}',
+                style: TextStyle(
+                  fontFamily: 'Quicksand',
+                ),
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FlatButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
+                FloatingActionButton(
+                  backgroundColor: Colors.pink[600],
+                  child: Icon(
+                    Icons.check,
+                    size: 40,
+                    color: Colors.white,
                   ),
-                  child: Text(
-                    'Adicionar a transação',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontFamily: 'Quicksand',
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  color: Colors.pink[600],
                   onPressed: _submitForm,
                 ),
               ],

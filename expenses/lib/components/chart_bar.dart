@@ -58,7 +58,7 @@ class ChartBar extends StatelessWidget {
         ),
         SizedBox(height: 5),
         Text(
-          label.toUpperCase(),
+          "${label[0].toUpperCase()}${label.substring(1)}",
           style: TextStyle(fontFamily: 'Quicksand'),
         ),
       ],
