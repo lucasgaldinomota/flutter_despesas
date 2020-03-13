@@ -1,5 +1,9 @@
+import 'package:expenses/components/adaptative_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'adaptative_button.dart';
+import 'adaptative_text_field.dart';
+import 'adaptative_date_picker.dart';
 
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
@@ -26,93 +30,73 @@ class _TransactionFormState extends State<TransactionForm> {
     widget.onSubmit(title, value, _selectedDate);
   }
 
-  _showDatePicker() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2019),
-      lastDate: DateTime.now(),
-    ).then((pickedDate) {
-      if (pickedDate == null) {
-        return;
-      }
-
-      setState(() {
-        _selectedDate = pickedDate;
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          children: [
-            TextField(
-              controller: _titleController,
-              onSubmitted: (_) => _submitForm(),
-              decoration: InputDecoration(labelText: 'Título'),
-              style: TextStyle(fontFamily: 'Quicksand'),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: 330,
-                  child: TextField(
-                    controller: _valueController,
-                    keyboardType:
-                        TextInputType.numberWithOptions(decimal: true),
-                    onSubmitted: (_) => _submitForm(),
-                    decoration: InputDecoration(labelText: 'Valor (R\$)'),
-                    style: TextStyle(fontFamily: 'Quicksand'),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.pink[600],
-                    mini: true,
-                    child: Icon(
-                      Icons.date_range,
-                      size: 25,
-                      color: Colors.white,
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: 10,
+            right: 10,
+            top: 10,
+            bottom: 10 + MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AdaptativeTextField(
+                label: 'Título da despesa',
+                controller: _titleController,
+                onSubmitted: (_) => _submitForm(),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 330,
+                    child: AdaptativeTextField(
+                      label: 'Valor (R\$)',
+                      controller: _valueController,
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
+                      onSubmitted: (_) => _submitForm(),
                     ),
-                    onPressed: _showDatePicker,
                   ),
-                ),
-              ],
-            ),
-            Container(
-              height: 70,
-              alignment: Alignment.center,
-              child: Text(
-                _selectedDate == null
-                    ? 'Nenhuma data selecionada!'
-                    : 'Data Selecionada: ${DateFormat('dd / MMMM / y', 'pt_BR').format(_selectedDate)}',
-                style: TextStyle(
-                  fontFamily: 'Quicksand',
+                  AdaptativeDatePicker(
+                    selectedDate: _selectedDate,
+                    onDateChanged: (newDate) {
+                      setState(() {
+                        _selectedDate = newDate;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Container(
+                height: 70,
+                alignment: Alignment.center,
+                child: Text(
+                  _selectedDate == null
+                      ? 'Nenhuma data selecionada!'
+                      : 'Data Selecionada: ${DateFormat("dd 'de' MMMM 'de' y", 'pt_BR').format(_selectedDate)}',
+                  style: TextStyle(
+                    fontFamily: 'Quicksand',
+                  ),
                 ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FloatingActionButton(
-                  backgroundColor: Colors.pink[600],
-                  child: Icon(
-                    Icons.check,
-                    size: 40,
-                    color: Colors.white,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AdaptativeButton(
+                    label: 'Nova Transação',
+                    onPressed: _submitForm,
                   ),
-                  onPressed: _submitForm,
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

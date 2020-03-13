@@ -5,8 +5,9 @@ import 'package:intl/intl.dart';
 class TransactionList extends StatefulWidget {
   final List<Transaction> _transactions;
   final void Function(String) onRemove;
+  final void Function(int, Transaction) undoRemove;
 
-  TransactionList(this._transactions, this.onRemove);
+  TransactionList(this._transactions, this.onRemove, this.undoRemove);
 
   @override
   _TransactionListState createState() => _TransactionListState();
@@ -16,23 +17,25 @@ class _TransactionListState extends State<TransactionList> {
   @override
   Widget build(BuildContext context) {
     return widget._transactions.isEmpty
-        ? Column(
-            children: [
-              SizedBox(height: 20),
-              Text(
-                'Nenhuma transação cadastrada!',
-                style: Theme.of(context).textTheme.title,
-              ),
-              SizedBox(height: 40),
-              Container(
-                height: 200,
-                child: Image.asset(
-                  'assets/images/waiting.png',
-                  fit: BoxFit.cover,
+        ? LayoutBuilder(builder: (ctx, constraints) {
+            return Column(
+              children: [
+                SizedBox(height: 20),
+                Text(
+                  'Nenhuma transação cadastrada!',
+                  style: Theme.of(context).textTheme.title,
                 ),
-              ),
-            ],
-          )
+                SizedBox(height: 40),
+                Container(
+                  height: constraints.maxHeight * 0.6,
+                  child: Image.asset(
+                    'assets/images/waiting.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+            );
+          })
         : ListView.builder(
             padding: EdgeInsets.only(bottom: 75),
             itemCount: widget._transactions.length,
@@ -61,7 +64,28 @@ class _TransactionListState extends State<TransactionList> {
                 ),
                 key: Key(tr.id),
                 onDismissed: (direction) {
+                  var item = widget._transactions.elementAt(index);
                   widget.onRemove(tr.id);
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Colors.grey[700],
+                      content: Text(
+                        "Despesa removida!",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Quicksand',
+                          fontSize: 15,
+                        ),
+                      ),
+                      action: SnackBarAction(
+                        label: "DESFAZER",
+                        textColor: Colors.white,
+                        onPressed: () {
+                          widget.undoRemove(index, item);
+                        },
+                      ),
+                    ),
+                  );
                 },
                 child: Card(
                   elevation: 5,
@@ -79,7 +103,7 @@ class _TransactionListState extends State<TransactionList> {
                           fontSize: 18),
                     ),
                     subtitle: Text(
-                      DateFormat('d MMMM y', 'pt_BR').format(tr.date),
+                      DateFormat("d 'de' MMMM 'de' y", 'pt_BR').format(tr.date),
                       style: TextStyle(fontSize: 13, color: Colors.grey[300]),
                     ),
                     trailing: Row(
