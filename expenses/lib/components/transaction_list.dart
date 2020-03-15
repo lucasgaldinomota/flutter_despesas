@@ -16,6 +16,8 @@ class TransactionList extends StatefulWidget {
 class _TransactionListState extends State<TransactionList> {
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return widget._transactions.isEmpty
         ? LayoutBuilder(builder: (ctx, constraints) {
             return Padding(
@@ -103,11 +105,14 @@ class _TransactionListState extends State<TransactionList> {
                           fontFamily: 'Quicksand',
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 18),
+                          fontSize: width * 0.044),
                     ),
                     subtitle: Text(
                       DateFormat("d 'de' MMMM 'de' y", 'pt_BR').format(tr.date),
-                      style: TextStyle(fontSize: 13, color: Colors.grey[300]),
+                      style: TextStyle(
+                        fontSize: width * 0.032,
+                        color: Colors.grey[300],
+                      ),
                     ),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -116,7 +121,7 @@ class _TransactionListState extends State<TransactionList> {
                           '- R\$ ${tr.value.toStringAsFixed(2)}',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: width * 0.044,
                             fontFamily: 'Quicksand',
                             fontWeight: FontWeight.bold,
                           ),
