@@ -209,8 +209,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           )
         : AppBar(
-            backgroundColor: Colors.black,
-            title: Text('Despesas Pessoais'),
+            backgroundColor: Color(0x1FFFFFF),
+            title: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text('Despesas Pessoais'),
+            ),
             centerTitle: true,
             actions: actions,
           );
