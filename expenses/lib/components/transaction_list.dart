@@ -18,22 +18,25 @@ class _TransactionListState extends State<TransactionList> {
   Widget build(BuildContext context) {
     return widget._transactions.isEmpty
         ? LayoutBuilder(builder: (ctx, constraints) {
-            return Column(
-              children: [
-                SizedBox(height: 20),
-                Text(
-                  'Nenhuma transação cadastrada!',
-                  style: Theme.of(context).textTheme.title,
-                ),
-                SizedBox(height: 40),
-                Container(
-                  height: constraints.maxHeight * 0.6,
-                  child: Image.asset(
-                    'assets/images/waiting.png',
-                    fit: BoxFit.cover,
+            return Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  SizedBox(height: 20),
+                  Text(
+                    'Nenhuma transação cadastrada!',
+                    style: Theme.of(context).textTheme.title,
                   ),
-                ),
-              ],
+                  SizedBox(height: 40),
+                  Container(
+                    height: constraints.maxHeight * 0.5,
+                    child: Image.asset(
+                      'assets/images/waiting.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
+              ),
             );
           })
         : ListView.builder(

@@ -55,7 +55,7 @@ class _TransactionFormState extends State<TransactionForm> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 330,
+                    width: MediaQuery.of(context).size.width * 0.73,
                     child: AdaptativeTextField(
                       label: 'Valor (R\$)',
                       controller: _valueController,
@@ -64,13 +64,16 @@ class _TransactionFormState extends State<TransactionForm> {
                       onSubmitted: (_) => _submitForm(),
                     ),
                   ),
-                  AdaptativeDatePicker(
-                    selectedDate: _selectedDate,
-                    onDateChanged: (newDate) {
-                      setState(() {
-                        _selectedDate = newDate;
-                      });
-                    },
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    child: AdaptativeDatePicker(
+                      selectedDate: _selectedDate,
+                      onDateChanged: (newDate) {
+                        setState(() {
+                          _selectedDate = newDate;
+                        });
+                      },
+                    ),
                   ),
                 ],
               ),
