@@ -6,7 +6,7 @@ class AdaptativeDatePicker extends StatelessWidget {
   final DateTime selectedDate;
   final Function(DateTime) onDateChanged;
 
-  AdaptativeDatePicker({this.selectedDate, this.onDateChanged});
+  const AdaptativeDatePicker({this.selectedDate, this.onDateChanged});
 
   _showDatePicker(BuildContext context) {
     showDatePicker(
@@ -37,11 +37,11 @@ class AdaptativeDatePicker extends StatelessWidget {
             ),
           )
         : Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 10),
             child: FloatingActionButton(
               backgroundColor: Colors.pink[600],
               mini: true,
-              child: Icon(
+              child: const Icon(
                 Icons.date_range,
                 size: 25,
                 color: Colors.white,

@@ -33,14 +33,14 @@ class ExpensesApp extends StatelessWidget {
           accentColor: Colors.white,
           fontFamily: 'Quicksand',
           textTheme: ThemeData.dark().textTheme.copyWith(
-                title: TextStyle(
+                title: const TextStyle(
                   fontFamily: 'Quicksand',
                   fontSize: 18,
                 ),
               ),
           appBarTheme: AppBarTheme(
             textTheme: ThemeData.dark().textTheme.copyWith(
-                  title: TextStyle(
+                  title: const TextStyle(
                     fontFamily: 'Quicksand',
                     fontSize: 27,
                   ),
@@ -202,7 +202,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final PreferredSizeWidget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text('Despesas Pessoais'),
+            middle: const Text('Despesas Pessoais'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: actions,
@@ -212,7 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor: Color(0x1FFFFFF),
             title: FittedBox(
               fit: BoxFit.fitWidth,
-              child: Text('Despesas Pessoais'),
+              child: const Text('Despesas Pessoais'),
             ),
             centerTitle: true,
             actions: actions,

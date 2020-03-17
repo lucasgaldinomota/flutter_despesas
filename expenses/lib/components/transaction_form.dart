@@ -8,7 +8,7 @@ import 'adaptative_date_picker.dart';
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
 
-  TransactionForm(this.onSubmit);
+  const TransactionForm(this.onSubmit);
 
   @override
   _TransactionFormState createState() => _TransactionFormState();
@@ -84,7 +84,7 @@ class _TransactionFormState extends State<TransactionForm> {
                   _selectedDate == null
                       ? 'Nenhuma data selecionada!'
                       : 'Data Selecionada: ${DateFormat("dd 'de' MMMM 'de' y", 'pt_BR').format(_selectedDate)}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'Quicksand',
                   ),
                 ),

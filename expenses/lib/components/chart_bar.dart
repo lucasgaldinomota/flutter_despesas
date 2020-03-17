@@ -5,7 +5,7 @@ class ChartBar extends StatelessWidget {
   final double value;
   final double percentage;
 
-  ChartBar({
+  const ChartBar({
     this.label,
     this.value,
     this.percentage,
@@ -21,7 +21,7 @@ class ChartBar extends StatelessWidget {
             child: FittedBox(
               child: Text(
                 '${value.toStringAsFixed(2)}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 3,
                   fontFamily: 'Quicksand',
                 ),
@@ -38,10 +38,10 @@ class ChartBar extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.grey,
+                      color: Colors.grey[300],
                       width: 1.0,
                     ),
-                    color: Color.fromRGBO(220, 220, 220, 1),
+                    color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
@@ -63,7 +63,7 @@ class ChartBar extends StatelessWidget {
             child: FittedBox(
               child: Text(
                 "${label[0].toUpperCase()}${label.substring(1)}",
-                style: TextStyle(fontFamily: 'Quicksand'),
+                style: const TextStyle(fontFamily: 'Quicksand'),
               ),
             ),
           ),

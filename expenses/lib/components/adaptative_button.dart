@@ -6,7 +6,7 @@ class AdaptativeButton extends StatelessWidget {
   final String label;
   final Function onPressed;
 
-  AdaptativeButton({this.label, this.onPressed});
+  const AdaptativeButton({this.label, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class AdaptativeButton extends StatelessWidget {
           )
         : FloatingActionButton(
             backgroundColor: Colors.pink[600],
-            child: Icon(
+            child: const Icon(
               Icons.check,
               size: 40,
               color: Colors.white,
