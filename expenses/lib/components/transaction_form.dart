@@ -32,6 +32,8 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return SingleChildScrollView(
       child: Card(
         elevation: 5,
@@ -55,7 +57,7 @@ class _TransactionFormState extends State<TransactionForm> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.73,
+                    width: width * 0.73,
                     child: AdaptativeTextField(
                       label: 'Valor (R\$)',
                       controller: _valueController,
@@ -65,7 +67,7 @@ class _TransactionFormState extends State<TransactionForm> {
                     ),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.2,
+                    width: width * 0.2,
                     child: AdaptativeDatePicker(
                       selectedDate: _selectedDate,
                       onDateChanged: (newDate) {
@@ -84,8 +86,9 @@ class _TransactionFormState extends State<TransactionForm> {
                   _selectedDate == null
                       ? 'Nenhuma data selecionada!'
                       : 'Data Selecionada: ${DateFormat("dd 'de' MMMM 'de' y", 'pt_BR').format(_selectedDate)}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'Quicksand',
+                    fontSize: width * 0.035,
                   ),
                 ),
               ),

@@ -25,7 +25,10 @@ class AdaptativeTextField extends StatelessWidget {
               keyboardType: keyboardType,
               onSubmitted: onSubmitted,
               placeholder: label,
-              placeholderStyle: const TextStyle(fontFamily: 'Quicksand'),
+              placeholderStyle: const TextStyle(
+                fontFamily: 'Quicksand',
+                fontWeight: FontWeight.bold,
+              ),
               padding: const EdgeInsets.symmetric(
                 horizontal: 6,
                 vertical: 12,
@@ -37,7 +40,10 @@ class AdaptativeTextField extends StatelessWidget {
             keyboardType: keyboardType,
             onSubmitted: onSubmitted,
             decoration: InputDecoration(labelText: label),
-            style: const TextStyle(fontFamily: 'Quicksand'),
+            style: const TextStyle(
+              fontFamily: 'Quicksand',
+              fontWeight: FontWeight.bold,
+            ),
           );
   }
 }

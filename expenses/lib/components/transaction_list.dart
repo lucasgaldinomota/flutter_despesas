@@ -82,7 +82,7 @@ class _TransactionListState extends State<TransactionList> {
                       ),
                       action: SnackBarAction(
                         label: "DESFAZER",
-                        textColor: Colors.white,
+                        textColor: Colors.greenAccent,
                         onPressed: () {
                           widget.undoRemove(index, item);
                         },
