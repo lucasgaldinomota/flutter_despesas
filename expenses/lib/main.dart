@@ -56,14 +56,8 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final List<Transaction> _transactions = [
-    Transaction(
-      id: 't0',
-      title: 'Conta antiga',
-      value: 400.00,
-      date: DateTime.now().subtract(Duration(days: 33)),
-    ),
     Transaction(
       id: 't1',
       title: 'Conta de Água',
@@ -82,51 +76,26 @@ class _MyHomePageState extends State<MyHomePage> {
       value: 150.00,
       date: DateTime.now(),
     ),
-    Transaction(
-      id: 't4',
-      title: 'Lanche',
-      value: 15.00,
-      date: DateTime.now().subtract(Duration(days: 2)),
-    ),
-    Transaction(
-      id: 't5',
-      title: 'Almoço',
-      value: 24.90,
-      date: DateTime.now().subtract(Duration(days: 3)),
-    ),
-    Transaction(
-      id: 't6',
-      title: 'Jantar',
-      value: 70.00,
-      date: DateTime.now().subtract(Duration(days: 3)),
-    ),
-    Transaction(
-      id: 't7',
-      title: 'Nintendo Switch',
-      value: 2000.00,
-      date: DateTime.now().subtract(Duration(days: 6)),
-    ),
-    Transaction(
-      id: 't8',
-      title: 'PS4 Pro',
-      value: 1800.00,
-      date: DateTime.now().subtract(Duration(days: 5)),
-    ),
-    Transaction(
-      id: 't9',
-      title: 'Faculdade',
-      value: 1000.00,
-      date: DateTime.now().subtract(Duration(days: 1)),
-    ),
-    Transaction(
-      id: 't10',
-      title: 'ESSA É A ÚLTIMA',
-      value: 150.00,
-      date: DateTime.now(),
-    ),
   ];
 
   bool _showChart = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -212,7 +181,12 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor: Color(0x1FFFFFF),
             title: FittedBox(
               fit: BoxFit.fitWidth,
-              child: const Text('Despesas Pessoais'),
+              child: Text(
+                'Despesas Pessoais',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.07,
+                ),
+              ),
             ),
             centerTitle: true,
             actions: actions,

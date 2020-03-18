@@ -36,7 +36,6 @@ class _TransactionFormState extends State<TransactionForm> {
 
     return SingleChildScrollView(
       child: Card(
-        elevation: 5,
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(

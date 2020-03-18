@@ -19,7 +19,6 @@ class TransactionItem extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
 
     return Card(
-      elevation: 5,
       margin: const EdgeInsets.symmetric(
         vertical: 3,
         horizontal: 5,
