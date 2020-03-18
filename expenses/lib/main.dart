@@ -216,6 +216,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             centerTitle: true,
             actions: actions,
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment(-1, -5),
+                  end: Alignment(1, 2),
+                  colors: [Colors.pink[600], Colors.deepPurple],
+                ),
+              ),
+            ),
           );
 
     final availableHeight = mediaQuery.size.height -

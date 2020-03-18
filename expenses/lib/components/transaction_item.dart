@@ -46,7 +46,7 @@ class TransactionItem extends StatelessWidget {
             Text(
               '- R\$ ${tr.value.toStringAsFixed(2)}',
               style: TextStyle(
-                color: Colors.redAccent,
+                color: Colors.white,
                 fontSize: width * 0.042,
                 fontFamily: 'Quicksand',
                 fontWeight: FontWeight.bold,

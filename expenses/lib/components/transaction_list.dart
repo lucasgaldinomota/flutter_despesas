@@ -54,7 +54,11 @@ class _TransactionListState extends State<TransactionList> {
                       borderRadius: const BorderRadius.all(
                         Radius.circular(5),
                       ),
-                      color: Colors.red[900],
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.red, Colors.red[900]],
+                      ),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(right: 10),
