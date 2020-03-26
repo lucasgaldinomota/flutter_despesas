@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
- 
+
 import '../models/category.dart';
- 
+
 const DUMMY_CATEGORIES = const [
   Category(
     id: 'c1',
@@ -21,17 +21,17 @@ const DUMMY_CATEGORIES = const [
   Category(
     id: 'c4',
     title: 'Alemã',
-    color: Colors.amber,
+    color: Colors.green,
   ),
   Category(
     id: 'c5',
     title: 'Leve & Saudável',
-    color: Colors.amber,
+    color: Colors.deepPurple,
   ),
   Category(
     id: 'c6',
     title: 'Exótica',
-    color: Colors.green,
+    color: Colors.pinkAccent,
   ),
   Category(
     id: 'c7',
@@ -41,7 +41,7 @@ const DUMMY_CATEGORIES = const [
   Category(
     id: 'c8',
     title: 'Asiática',
-    color: Colors.lightGreen,
+    color: Colors.cyan,
   ),
   Category(
     id: 'c9',
