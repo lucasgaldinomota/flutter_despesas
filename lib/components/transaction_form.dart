@@ -64,7 +64,7 @@ class _TransactionFormState extends State<TransactionForm> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width: width * 0.73,
+                      width: width * 0.7,
                       child: AdaptativeTextField(
                         label: 'Valor (R\$)',
                         controller: _valueController,

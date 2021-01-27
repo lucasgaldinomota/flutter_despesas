@@ -25,7 +25,7 @@ class _TransactionListState extends State<TransactionList> {
                   const SizedBox(height: 20),
                   Text(
                     'Nenhuma transação cadastrada!',
-                    style: Theme.of(context).textTheme.title,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   const SizedBox(height: 40),
                   Container(

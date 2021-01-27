@@ -33,14 +33,14 @@ class ExpensesApp extends StatelessWidget {
           accentColor: Colors.white,
           fontFamily: 'Quicksand',
           textTheme: ThemeData.dark().textTheme.copyWith(
-                title: const TextStyle(
+                headline6: const TextStyle(
                   fontFamily: 'Quicksand',
                   fontSize: 18,
                 ),
               ),
           appBarTheme: AppBarTheme(
             textTheme: ThemeData.dark().textTheme.copyWith(
-                  title: const TextStyle(
+                  headline6: const TextStyle(
                     fontFamily: 'Quicksand',
                     fontSize: 27,
                   ),
