@@ -21,6 +21,7 @@ class ExpensesApp extends StatelessWidget {
     return MaterialApp(
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate
         ],
         supportedLocales: [
@@ -171,11 +172,15 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
     final PreferredSizeWidget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: const Text('Despesas Pessoais'),
+            middle: const Text(
+              'Despesas Pessoais',
+              style: TextStyle(color: Colors.white),
+            ),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: actions,
             ),
+            backgroundColor: Colors.pink[600],
           )
         : AppBar(
             backgroundColor: Color(0x1FFFFFF),
@@ -226,22 +231,15 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
       ),
     );
 
-    return Platform.isIOS
-        ? CupertinoPageScaffold(
-            navigationBar: appBar,
-            child: bodyPage,
-          )
-        : Scaffold(
-            appBar: appBar,
-            body: bodyPage,
-            floatingActionButton: Platform.isIOS
-                ? Container()
-                : FloatingActionButton(
-                    child: Icon(Icons.add, color: Colors.white, size: 35),
-                    onPressed: () => _openTransactionFormModal(context),
-                    backgroundColor: Colors.pink[600],
-                  ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          );
+    return Scaffold(
+      appBar: appBar,
+      body: bodyPage,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add, color: Colors.white, size: 35),
+        onPressed: () => _openTransactionFormModal(context),
+        backgroundColor: Colors.pink[600],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+    );
   }
 }
