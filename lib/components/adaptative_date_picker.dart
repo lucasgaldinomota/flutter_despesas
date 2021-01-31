@@ -26,14 +26,23 @@ class AdaptativeDatePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Platform.isIOS
-        ? Container(
-            height: 180,
-            child: CupertinoDatePicker(
-              mode: CupertinoDatePickerMode.date,
-              initialDateTime: DateTime.now(),
-              minimumDate: DateTime(2019),
-              maximumDate: DateTime.now(),
-              onDateTimeChanged: onDateChanged,
+        ? CupertinoTheme(
+            data: CupertinoThemeData(
+              textTheme: CupertinoTextThemeData(
+                dateTimePickerTextStyle:
+                    TextStyle(fontSize: 18, color: Colors.white),
+              ),
+            ),
+            child: Container(
+              width: 300,
+              height: 170,
+              child: CupertinoDatePicker(
+                mode: CupertinoDatePickerMode.date,
+                initialDateTime: DateTime.now(),
+                minimumDate: DateTime(2019),
+                maximumDate: DateTime.now(),
+                onDateTimeChanged: onDateChanged,
+              ),
             ),
           )
         : Padding(

@@ -23,16 +23,17 @@ class AdaptativeTextField extends StatelessWidget {
             child: CupertinoTextField(
               decoration: BoxDecoration(
                 color: Colors.transparent,
-                border: Border.all(color: Colors.white),
-                borderRadius: BorderRadius.all(Radius.circular(50)),
+                border:
+                    Border(bottom: BorderSide(width: 0.4, color: Colors.white)),
               ),
               controller: controller,
               keyboardType: keyboardType,
               onSubmitted: onSubmitted,
+              style: TextStyle(color: Colors.white),
               placeholder: label,
+              clearButtonMode: OverlayVisibilityMode.editing,
               placeholderStyle: const TextStyle(
                 fontFamily: 'Quicksand',
-                fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
               padding: const EdgeInsets.symmetric(
