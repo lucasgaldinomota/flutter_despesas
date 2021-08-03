@@ -25,7 +25,7 @@ class _TransactionFormState extends State<TransactionForm> {
     final title = _titleController.text;
     final value = double.tryParse(_valueController.text) ?? 0.0;
 
-    if (title.isEmpty || value <= 0 || _selectedDate == null) {
+    if (title.isEmpty || value <= 0) {
       return;
     }
 
@@ -44,7 +44,7 @@ class _TransactionFormState extends State<TransactionForm> {
                   gradient: LinearGradient(
                     begin: Alignment(-1, -2),
                     end: Alignment(0, 1),
-                    colors: [Colors.pink[600], Colors.deepPurple],
+                    colors: [Colors.pink[600]!, Colors.deepPurple],
                   ),
                 ),
                 child: Padding(
@@ -98,7 +98,7 @@ class _TransactionFormState extends State<TransactionForm> {
                   gradient: LinearGradient(
                     begin: Alignment(-1, -2),
                     end: Alignment(0, 1),
-                    colors: [Colors.pink[600], Colors.deepPurple],
+                    colors: [Colors.pink[600]!, Colors.deepPurple],
                   ),
                 ),
                 child: Padding(
@@ -147,9 +147,7 @@ class _TransactionFormState extends State<TransactionForm> {
                         height: 70,
                         alignment: Alignment.center,
                         child: Text(
-                          _selectedDate == null
-                              ? 'Nenhuma data selecionada!'
-                              : 'Data Selecionada: ${DateFormat("dd 'de' MMMM 'de' y", 'pt_BR').format(_selectedDate)}',
+                          'Data Selecionada: ${DateFormat("dd 'de' MMMM 'de' y", 'pt_BR').format(_selectedDate)}',
                           style: TextStyle(
                             fontFamily: 'Quicksand',
                             fontSize: width * 0.035,

@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
   }
 
   @override
@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   @override
   void dispose() {
     super.dispose();
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
   }
 
   List<Transaction> get _recentTransactions {
@@ -143,9 +143,9 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     );
   }
 
-  Widget _getIconButton(IconData icon, Function fn) {
+  Widget _getIconButton(IconData icon, Function() fn) {
     return Platform.isIOS
-        ? GestureDetector(onTap: fn, child: Icon(icon))
+        ? GestureDetector(onTap: fn, child: Icon(icon, size: 40))
         : IconButton(icon: Icon(icon), onPressed: fn);
   }
 
@@ -168,43 +168,35 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
             });
           },
         ),
+      _getIconButton(
+        Platform.isIOS ? CupertinoIcons.add : Icons.add,
+        () => _openTransactionFormModal(context),
+      ),
     ];
 
-    final PreferredSizeWidget appBar = Platform.isIOS
-        ? CupertinoNavigationBar(
-            middle: const Text(
-              'Despesas Pessoais',
-              style: TextStyle(color: Colors.white),
-            ),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: actions,
-            ),
-            backgroundColor: Colors.pink[600],
-          )
-        : AppBar(
-            backgroundColor: Color(0x1FFFFFF),
-            title: FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text(
-                'Despesas Pessoais',
-                style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width * 0.07,
-                ),
-              ),
-            ),
-            centerTitle: true,
-            actions: actions,
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment(-1, -5),
-                  end: Alignment(1, 2),
-                  colors: [Colors.pink[600], Colors.deepPurple],
-                ),
-              ),
-            ),
-          );
+    final PreferredSizeWidget appBar = AppBar(
+      backgroundColor: Color(0x1FFFFFF),
+      title: FittedBox(
+        fit: BoxFit.fitWidth,
+        child: Text(
+          'Despesas Pessoais',
+          style: TextStyle(
+            fontSize: MediaQuery.of(context).size.width * 0.07,
+          ),
+        ),
+      ),
+      centerTitle: true,
+      actions: actions,
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment(-1, -5),
+            end: Alignment(1, 2),
+            colors: [Colors.pink[600]!, Colors.deepPurple],
+          ),
+        ),
+      ),
+    );
 
     final availableHeight = mediaQuery.size.height -
         appBar.preferredSize.height -
@@ -231,15 +223,30 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
       ),
     );
 
-    return Scaffold(
-      appBar: appBar,
-      body: bodyPage,
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add, color: Colors.white, size: 35),
-        onPressed: () => _openTransactionFormModal(context),
-        backgroundColor: Colors.pink[600],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-    );
+    return Platform.isIOS
+        ? CupertinoPageScaffold(
+            navigationBar: CupertinoNavigationBar(
+              middle: const Text(
+                'Despesas Pessoais',
+                style: TextStyle(color: Colors.white),
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: actions,
+              ),
+              backgroundColor: Colors.pink[600],
+            ),
+            child: bodyPage,
+          )
+        : Scaffold(
+            appBar: appBar,
+            body: bodyPage,
+            floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add, color: Colors.white, size: 35),
+              onPressed: () => _openTransactionFormModal(context),
+              backgroundColor: Colors.pink[600],
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          );
   }
 }

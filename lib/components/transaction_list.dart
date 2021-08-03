@@ -57,7 +57,7 @@ class _TransactionListState extends State<TransactionList> {
                       gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.centerRight,
-                        colors: [Colors.red, Colors.red[900]],
+                        colors: [Colors.red, Colors.red[900]!],
                       ),
                     ),
                     child: Padding(
@@ -73,7 +73,7 @@ class _TransactionListState extends State<TransactionList> {
                 onDismissed: (direction) {
                   var item = widget._transactions.elementAt(index);
                   widget.onRemove(tr.id);
-                  Scaffold.of(context).showSnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       backgroundColor: Colors.grey[700],
                       content: Text(

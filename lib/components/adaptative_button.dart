@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 
 class AdaptativeButton extends StatelessWidget {
-  final String label;
-  final Function onPressed;
+  final String? label;
+  final Function()? onPressed;
 
   const AdaptativeButton({this.label, this.onPressed});
 
@@ -13,7 +13,7 @@ class AdaptativeButton extends StatelessWidget {
     return Platform.isIOS
         ? CupertinoButton(
             color: Colors.pink[700],
-            child: Text(label),
+            child: Text(label.toString()),
             onPressed: onPressed,
           )
         : FloatingActionButton(

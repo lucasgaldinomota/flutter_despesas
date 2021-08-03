@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'dart:io';
 
 class AdaptativeDatePicker extends StatelessWidget {
-  final DateTime selectedDate;
-  final Function(DateTime) onDateChanged;
+  final DateTime? selectedDate;
+  final Function(DateTime)? onDateChanged;
 
   const AdaptativeDatePicker({this.selectedDate, this.onDateChanged});
 
@@ -19,7 +19,7 @@ class AdaptativeDatePicker extends StatelessWidget {
         return;
       }
 
-      onDateChanged(pickedDate);
+      onDateChanged!(pickedDate);
     });
   }
 
@@ -41,7 +41,7 @@ class AdaptativeDatePicker extends StatelessWidget {
                 initialDateTime: DateTime.now(),
                 minimumDate: DateTime(2019),
                 maximumDate: DateTime.now(),
-                onDateTimeChanged: onDateChanged,
+                onDateTimeChanged: onDateChanged!,
               ),
             ),
           )

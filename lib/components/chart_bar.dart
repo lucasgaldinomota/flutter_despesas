@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ChartBar extends StatelessWidget {
-  final String label;
-  final double value;
-  final double percentage;
+  final String? label;
+  final double? value;
+  final double? percentage;
 
   const ChartBar({
     this.label,
@@ -20,7 +20,7 @@ class ChartBar extends StatelessWidget {
             height: constraints.maxHeight * 0.15,
             child: FittedBox(
               child: Text(
-                '${value.toStringAsFixed(2)}',
+                '${value?.toStringAsFixed(2)}',
                 style: const TextStyle(
                   fontSize: 3,
                   fontFamily: 'Quicksand',
@@ -38,7 +38,7 @@ class ChartBar extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.grey[300],
+                      color: Colors.grey[300]!,
                       width: 1.0,
                     ),
                     color: Colors.grey[300],
@@ -62,7 +62,7 @@ class ChartBar extends StatelessWidget {
             height: constraints.maxHeight * 0.15,
             child: FittedBox(
               child: Text(
-                "${label[0].toUpperCase()}${label.substring(1)}",
+                "${label?[0].toUpperCase()}${label?.substring(1)}",
                 style: const TextStyle(fontFamily: 'Quicksand'),
               ),
             ),

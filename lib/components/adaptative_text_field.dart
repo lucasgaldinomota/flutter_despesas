@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'dart:io';
 
 class AdaptativeTextField extends StatelessWidget {
-  final String label;
-  final TextEditingController controller;
+  final String? label;
+  final TextEditingController? controller;
   final TextInputType keyboardType;
-  final Function(String) onSubmitted;
+  final Function(String)? onSubmitted;
 
   const AdaptativeTextField({
     this.label,

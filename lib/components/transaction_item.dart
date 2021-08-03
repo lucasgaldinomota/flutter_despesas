@@ -8,10 +8,10 @@ class TransactionItem extends StatelessWidget {
   final void Function(int, Transaction) undoRemove;
 
   const TransactionItem({
-    Key key,
-    @required this.tr,
-    @required this.onRemove,
-    @required this.undoRemove,
+    Key? key,
+    required this.tr,
+    required this.onRemove,
+    required this.undoRemove,
   }) : super(key: key);
 
   @override
