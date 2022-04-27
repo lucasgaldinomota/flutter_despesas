@@ -21,13 +21,12 @@ class TransactionItem extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(
         vertical: 3,
-        horizontal: 5,
+        horizontal: 7,
       ),
       child: ListTile(
         title: Text(
           tr.title,
           style: TextStyle(
-              fontFamily: 'Quicksand',
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: width * 0.044),
@@ -47,7 +46,6 @@ class TransactionItem extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: width * 0.042,
-                fontFamily: 'Quicksand',
                 fontWeight: FontWeight.bold,
               ),
             ),

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
 
 class AdaptativeButton extends StatelessWidget {
   final String? label;
@@ -10,20 +8,20 @@ class AdaptativeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isIOS
-        ? CupertinoButton(
-            color: Colors.pink[700],
-            child: Text(label.toString()),
-            onPressed: onPressed,
-          )
-        : FloatingActionButton(
-            backgroundColor: Colors.pink[600],
-            child: const Icon(
-              Icons.check,
-              size: 40,
-              color: Colors.white,
-            ),
-            onPressed: onPressed,
-          );
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.06,
+      width: MediaQuery.of(context).size.width * 0.5,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          elevation: 10,
+          primary: Theme.of(context).colorScheme.secondary,
+        ),
+        child: Text(
+          label!,
+          style: TextStyle(fontSize: 18),
+        ),
+        onPressed: onPressed,
+      ),
+    );
   }
 }

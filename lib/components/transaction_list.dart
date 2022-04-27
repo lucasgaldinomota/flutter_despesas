@@ -17,37 +17,45 @@ class _TransactionListState extends State<TransactionList> {
   @override
   Widget build(BuildContext context) {
     return widget._transactions.isEmpty
-        ? LayoutBuilder(builder: (ctx, constraints) {
-            return Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  const SizedBox(height: 20),
-                  Text(
-                    'Nenhuma transação cadastrada!',
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  const SizedBox(height: 40),
-                  Container(
-                    height: constraints.maxHeight * 0.5,
-                    child: Image.asset(
-                      'assets/images/waiting.png',
-                      fit: BoxFit.cover,
+        ? LayoutBuilder(
+            builder: (ctx, constraints) {
+              return Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 20),
+                    Text(
+                      'Nenhuma transação cadastrada!',
+                      style: Theme.of(context).textTheme.headline6,
                     ),
-                  ),
-                ],
-              ),
-            );
-          })
+                    const SizedBox(height: 40),
+                    Container(
+                      height: constraints.maxHeight * 0.5,
+                      child: Image.asset(
+                        'assets/images/waiting.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          )
         : ListView.builder(
-            padding: const EdgeInsets.only(bottom: 75),
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).size.height * 0.234,
+            ),
             itemCount: widget._transactions.length,
             itemBuilder: (ctx, index) {
               final tr = widget._transactions[index];
               return Dismissible(
                 direction: DismissDirection.endToStart,
                 background: Padding(
-                  padding: const EdgeInsets.all(3),
+                  padding: const EdgeInsets.only(
+                    top: 3,
+                    bottom: 3,
+                    right: 7,
+                  ),
                   child: Container(
                     alignment: AlignmentDirectional.centerEnd,
                     decoration: BoxDecoration(

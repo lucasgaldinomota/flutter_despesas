@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'dart:io';
 
 class AdaptativeTextField extends StatelessWidget {
   final String? label;
@@ -17,40 +15,22 @@ class AdaptativeTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isIOS
-        ? Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: CupertinoTextField(
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                border:
-                    Border(bottom: BorderSide(width: 0.4, color: Colors.white)),
-              ),
-              controller: controller,
-              keyboardType: keyboardType,
-              onSubmitted: onSubmitted,
-              style: TextStyle(color: Colors.white),
-              placeholder: label,
-              clearButtonMode: OverlayVisibilityMode.editing,
-              placeholderStyle: const TextStyle(
-                fontFamily: 'Quicksand',
-                color: Colors.white,
-              ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 6,
-                vertical: 12,
-              ),
-            ),
-          )
-        : TextField(
-            controller: controller,
-            keyboardType: keyboardType,
-            onSubmitted: onSubmitted,
-            decoration: InputDecoration(labelText: label),
-            style: const TextStyle(
-              fontFamily: 'Quicksand',
-              fontWeight: FontWeight.bold,
-            ),
-          );
+    return TextField(
+      controller: controller,
+      keyboardType: keyboardType,
+      onSubmitted: onSubmitted,
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(
+          color: Colors.white70,
+          // fontWeight: FontWeight.bold,
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white70,
+          ),
+        ),
+      ),
+    );
   }
 }
