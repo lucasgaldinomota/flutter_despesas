@@ -11,7 +11,8 @@ class AdaptativeTextField extends StatelessWidget {
     this.controller,
     this.keyboardType = TextInputType.text,
     this.onSubmitted,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +22,10 @@ class AdaptativeTextField extends StatelessWidget {
       onSubmitted: onSubmitted,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(
+        labelStyle: const TextStyle(
           color: Colors.white70,
-          // fontWeight: FontWeight.bold,
         ),
-        focusedBorder: UnderlineInputBorder(
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: Colors.white70,
           ),

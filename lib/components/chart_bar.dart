@@ -21,7 +21,7 @@ class ChartBar extends StatelessWidget {
             height: constraints.maxHeight * 0.15,
             child: FittedBox(
               child: Text(
-                value!.toStringAsFixed(2),
+                "R\$${value!.toStringAsFixed(0)}",
                 style: const TextStyle(
                   fontSize: 3,
                 ),
@@ -38,19 +38,16 @@ class ChartBar extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.grey[300]!,
-                      width: 1.5,
+                      color: Colors.grey[600]!,
                     ),
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.grey[700],
                   ),
                 ),
                 FractionallySizedBox(
                   heightFactor: percentage,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.pink[700],
-                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.purple[600],
                     ),
                   ),
                 ),
@@ -58,7 +55,7 @@ class ChartBar extends StatelessWidget {
             ),
           ),
           SizedBox(height: constraints.maxHeight * 0.05),
-          Container(
+          SizedBox(
             height: constraints.maxHeight * 0.14,
             child: FittedBox(
               child: Text(

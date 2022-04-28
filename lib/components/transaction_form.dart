@@ -1,4 +1,4 @@
-import 'package:expenses/components/adaptative_date_picker.dart';
+import '/components/adaptative_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'adaptative_button.dart';
@@ -17,7 +17,7 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   final _titleController = TextEditingController();
   final _valueController = TextEditingController();
-  DateTime? _selectedDate = DateTime.now();
+  DateTime? _selectedDate;
 
   _submitForm() {
     final title = _titleController.text;
@@ -40,8 +40,8 @@ class _TransactionFormState extends State<TransactionForm> {
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment(-1, -2),
-              end: Alignment(0, 1),
+              begin: const Alignment(-1, -2),
+              end: const Alignment(0, 1),
               colors: [
                 Theme.of(context).colorScheme.secondary,
                 Theme.of(context).colorScheme.primary,
@@ -72,8 +72,8 @@ class _TransactionFormState extends State<TransactionForm> {
                       child: AdaptativeTextField(
                         label: 'Valor (R\$)',
                         controller: _valueController,
-                        keyboardType:
-                            TextInputType.numberWithOptions(decimal: true),
+                        keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true),
                         onSubmitted: (_) => _submitForm(),
                       ),
                     ),
@@ -94,7 +94,9 @@ class _TransactionFormState extends State<TransactionForm> {
                   height: height * 0.06,
                   alignment: Alignment.center,
                   child: Text(
-                    'Data selecionada: ${DateFormat("dd 'de' MMMM 'de' y", 'pt_BR').format(_selectedDate!)}',
+                    _selectedDate == null
+                        ? 'Nenhuma data selecionada'
+                        : 'Data selecionada: ${DateFormat("dd 'de' MMMM 'de' y", 'pt_BR').format(_selectedDate!)}',
                     style: TextStyle(
                       fontSize: width * 0.035,
                     ),
@@ -104,7 +106,7 @@ class _TransactionFormState extends State<TransactionForm> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AdaptativeButton(
-                      label: 'Nova Transação',
+                      label: 'Salvar',
                       onPressed: _submitForm,
                     ),
                   ],

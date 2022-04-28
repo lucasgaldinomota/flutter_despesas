@@ -4,7 +4,11 @@ class AdaptativeButton extends StatelessWidget {
   final String? label;
   final Function()? onPressed;
 
-  const AdaptativeButton({this.label, this.onPressed});
+  const AdaptativeButton({
+    this.label,
+    this.onPressed,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class AdaptativeButton extends StatelessWidget {
         ),
         child: Text(
           label!,
-          style: TextStyle(fontSize: 18),
+          style: const TextStyle(fontSize: 18),
         ),
         onPressed: onPressed,
       ),

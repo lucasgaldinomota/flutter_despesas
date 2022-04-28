@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'dart:math';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'models/transaction.dart';
 import 'components/transaction_form.dart';
 import 'components/transaction_list.dart';
 import 'components/chart.dart';
 
-main() => runApp(ExpensesApp());
+void main() {
+  runApp(MyApp());
+}
 
-class ExpensesApp extends StatelessWidget {
-  ExpensesApp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  MyApp({Key? key}) : super(key: key);
   final ThemeData mainTheme = ThemeData.dark();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
       ],
-      supportedLocales: [const Locale('pt', 'BR')],
+      supportedLocales: const [Locale('pt', 'BR')],
       debugShowCheckedModeBanner: false,
       title: 'Despesas',
       theme: mainTheme.copyWith(
@@ -32,12 +34,14 @@ class ExpensesApp extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -47,55 +51,55 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     Transaction(
       id: 't1',
       title: 'Conta de Água',
-      value: 310.76,
-      date: DateTime.now().subtract(Duration(days: 3)),
+      value: 101.76,
+      date: DateTime.now().subtract(const Duration(days: 6)),
     ),
     Transaction(
       id: 't2',
       title: 'Conta de Luz',
       value: 211.30,
-      date: DateTime.now().subtract(Duration(days: 4)),
+      date: DateTime.now().subtract(const Duration(days: 5)),
     ),
     Transaction(
       id: 't3',
-      title: 'Internet',
-      value: 150.00,
-      date: DateTime.now(),
+      title: 'Conta de Internet',
+      value: 109.90,
+      date: DateTime.now().subtract(const Duration(days: 4)),
     ),
     Transaction(
       id: 't4',
-      title: 'Internet 2',
-      value: 150.00,
-      date: DateTime.now(),
+      title: 'Cinema',
+      value: 40.00,
+      date: DateTime.now().subtract(const Duration(days: 3)),
     ),
     Transaction(
       id: 't5',
-      title: 'Internet 3',
-      value: 150.00,
-      date: DateTime.now(),
+      title: 'Café da Manhã',
+      value: 25.00,
+      date: DateTime.now().subtract(const Duration(days: 2)),
     ),
     Transaction(
       id: 't6',
-      title: 'Internet 4',
-      value: 150.00,
-      date: DateTime.now(),
+      title: 'Almoço',
+      value: 32.50,
+      date: DateTime.now().subtract(const Duration(days: 2)),
     ),
     Transaction(
       id: 't7',
-      title: 'Internet 5',
-      value: 150.00,
-      date: DateTime.now(),
+      title: 'Jantar',
+      value: 70.30,
+      date: DateTime.now().subtract(const Duration(days: 2)),
     ),
     Transaction(
       id: 't8',
-      title: 'Internet 6',
-      value: 150.00,
-      date: DateTime.now(),
+      title: 'Aluguel',
+      value: 600.00,
+      date: DateTime.now().subtract(const Duration(days: 1)),
     ),
     Transaction(
       id: 't9',
-      title: 'Internet 7',
-      value: 150.00,
+      title: 'Cartão de Crédito',
+      value: 930.00,
       date: DateTime.now(),
     ),
   ];
@@ -107,9 +111,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print(state);
-  }
+  void didChangeAppLifecycleState(AppLifecycleState state) {}
 
   @override
   void dispose() {
@@ -120,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
       return tr.date.isAfter(DateTime.now().subtract(
-        Duration(days: 7),
+        const Duration(days: 7),
       ));
     }).toList();
   }
@@ -169,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        title: Text(
+        title: const Text(
           'Despesas',
           style: TextStyle(fontSize: 25),
         ),
@@ -180,14 +182,14 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
+              SizedBox(
                 height: mediaQuery.height * 0.18,
                 child: Chart(_recentTransactions),
               ),
-              Container(
-                height: mediaQuery.height * 0.8,
+              SizedBox(
+                height: mediaQuery.height * 0.66,
                 child: TransactionList(
-                  _transactions,
+                  _transactions.reversed.toList(),
                   _removeTransaction,
                   _undoRemove,
                 ),

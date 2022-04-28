@@ -7,7 +7,12 @@ class TransactionList extends StatefulWidget {
   final void Function(String) onRemove;
   final void Function(int, Transaction) undoRemove;
 
-  const TransactionList(this._transactions, this.onRemove, this.undoRemove);
+  const TransactionList(
+    this._transactions,
+    this.onRemove,
+    this.undoRemove, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   _TransactionListState createState() => _TransactionListState();
@@ -29,7 +34,7 @@ class _TransactionListState extends State<TransactionList> {
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     const SizedBox(height: 40),
-                    Container(
+                    SizedBox(
                       height: constraints.maxHeight * 0.5,
                       child: Image.asset(
                         'assets/images/waiting.png',
@@ -43,7 +48,7 @@ class _TransactionListState extends State<TransactionList> {
           )
         : ListView.builder(
             padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height * 0.234,
+              bottom: MediaQuery.of(context).size.height * 0.09,
             ),
             itemCount: widget._transactions.length,
             itemBuilder: (ctx, index) {
@@ -68,9 +73,9 @@ class _TransactionListState extends State<TransactionList> {
                         colors: [Colors.red, Colors.red[900]!],
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: const Icon(
+                    child: const Padding(
+                      padding: EdgeInsets.only(right: 10),
+                      child: Icon(
                         Icons.delete_outline,
                         size: 30,
                       ),
@@ -85,7 +90,7 @@ class _TransactionListState extends State<TransactionList> {
                     SnackBar(
                       backgroundColor: Colors.grey[700],
                       content: Text(
-                        "${tr.title} removida(a)!",
+                        '"${tr.title}" removida!',
                         style: const TextStyle(
                           color: Colors.white,
                           fontFamily: 'Quicksand',
@@ -94,7 +99,7 @@ class _TransactionListState extends State<TransactionList> {
                       ),
                       action: SnackBarAction(
                         label: "DESFAZER",
-                        textColor: Colors.greenAccent,
+                        textColor: Colors.purple[200],
                         onPressed: () {
                           widget.undoRemove(index, item);
                         },
