@@ -1,7 +1,7 @@
 # Projeto Despesas
 
 Projeto baseado no curso [Aprenda Flutter & Dart e Construa APPs iOS e Android](https://www.cod3r.com.br/courses/aprenda-flutter-dart-e-construa-apps-ios-e-android) da [Cod3r](https://www.cod3r.com.br/).
-O projeto foi modificado por mim para deixar com uma cara diferente e também está atualizado para o Flutter 3.
+O projeto foi modificado por mim para deixar com um visual diferente e também para atualizar para o Flutter 3.
 
 ## Executando o projeto
 
