@@ -20,11 +20,11 @@ class AdaptativeButton extends StatelessWidget {
           elevation: 10,
           primary: Theme.of(context).colorScheme.secondary,
         ),
+        onPressed: onPressed,
         child: Text(
           label!,
           style: const TextStyle(fontSize: 18),
         ),
-        onPressed: onPressed,
       ),
     );
   }

@@ -43,10 +43,10 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
+class MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final List<Transaction> _transactions = [
     Transaction(
       id: 't1',
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
@@ -116,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   @override
   void dispose() {
     super.dispose();
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
   }
 
   List<Transaction> get _recentTransactions {
@@ -199,13 +199,13 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        onPressed: () => _openTransactionFormModal(context),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         child: Icon(
           Icons.add,
           color: Theme.of(context).iconTheme.color,
           size: 35,
         ),
-        onPressed: () => _openTransactionFormModal(context),
-        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

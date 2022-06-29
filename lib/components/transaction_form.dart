@@ -11,10 +11,10 @@ class TransactionForm extends StatefulWidget {
   const TransactionForm(this.onSubmit, {Key? key}) : super(key: key);
 
   @override
-  _TransactionFormState createState() => _TransactionFormState();
+  TransactionFormState createState() => TransactionFormState();
 }
 
-class _TransactionFormState extends State<TransactionForm> {
+class TransactionFormState extends State<TransactionForm> {
   final _titleController = TextEditingController();
   final _valueController = TextEditingController();
   DateTime? _selectedDate;

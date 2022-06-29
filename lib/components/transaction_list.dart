@@ -15,10 +15,10 @@ class TransactionList extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _TransactionListState createState() => _TransactionListState();
+  TransactionListState createState() => TransactionListState();
 }
 
-class _TransactionListState extends State<TransactionList> {
+class TransactionListState extends State<TransactionList> {
   @override
   Widget build(BuildContext context) {
     return widget._transactions.isEmpty
